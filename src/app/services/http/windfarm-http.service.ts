@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable, tap } from 'rxjs';
-import { Windfarm, isWindfarmArray } from 'src/app/models/windfarm';
-import { checkTypeGuard } from 'src/app/util/check-type-guard';
+import { Windfarm, isWindfarmArray } from '../../models/windfarm';
+import { checkTypeGuard } from '../../util/check-type-guard';
 
 @Injectable({
   providedIn: 'root'
