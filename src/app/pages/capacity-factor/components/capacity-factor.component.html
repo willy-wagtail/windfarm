@@ -1,0 +1,60 @@
+<header>
+    <h1>
+        Windfarm Capacity Factor
+    </h1>
+
+    <p>
+        Choose a windfarm, start date and end date
+        to show the windfarm's daily <em>Capacity Factor</em>.
+    </p>
+</header>
+
+<div class="filters">
+    <div class="filter-item">
+        <label for="windfarm-select">
+            Windfarm
+        </label>
+
+        <select name="windfarm" id="windfarm-select">
+            <option selected [value]="null" disabled>
+                -
+            </option>
+
+            <option *ngFor="let windfarm of windfarms" [value]="windfarm">
+                {{ windfarm.name }}
+            </option>
+        </select>
+    </div>
+
+    <div class="filter-item">
+        <label for="start-date">
+            Start Date
+        </label>
+        
+        <div class="datepicker" id="start-date">
+            <div class="datepicker-icon">
+                <app-calendar-icon classNames="h-5 w-5 text-gray-500"></app-calendar-icon>
+            </div>
+
+            <input type="date" class="datepicker-input">
+        </div>
+    </div>
+
+    <div class="filter-item">
+        <label for="end-date">
+            End Date
+        </label>
+
+        <div class="datepicker" id="end-date">
+            <div class="datepicker-icon">
+                <app-calendar-icon classNames="h-5 w-5 text-gray-500"></app-calendar-icon>
+            </div>
+
+            <input type="date" class="datepicker-input">
+        </div>
+    </div>
+</div>
+
+<div>
+    Table
+</div>

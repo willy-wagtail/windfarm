@@ -12,10 +12,14 @@ Note that it may be that in a period of time, meter readings are not available f
 
 # Implementation
 • Create a new Angular application for this task
+
 • Implement the user interface according to the description above, making sure it has
 proper responsive behavior and a nice look (please use your taste for styles detailing)
+
 • No need to implement the backend, you can mock it
+
 • Introduce a shared state in the application to be ready for future business requirements
+
 • Create some sort of README describing your implementation
 
 Bonus: we value tests, so investing there will be a plus.

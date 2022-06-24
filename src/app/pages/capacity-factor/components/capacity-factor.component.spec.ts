@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WindfarmComponent } from './windfarm.component';
+import { CapacityFactorComponent } from './capacity-factor.component';
 
-describe('WindfarmComponent', () => {
-  let component: WindfarmComponent;
-  let fixture: ComponentFixture<WindfarmComponent>;
+describe('CapacityFactorComponent', () => {
+  let component: CapacityFactorComponent;
+  let fixture: ComponentFixture<CapacityFactorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WindfarmComponent ]
+      declarations: [ CapacityFactorComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(WindfarmComponent);
+    fixture = TestBed.createComponent(CapacityFactorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

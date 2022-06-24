@@ -14,7 +14,7 @@ export class WindfarmHttpService {
 
   constructor(private http: HttpClient) { }
 
-  getAllWindfarms(): Observable<Windfarm[]> {
+  getAllWindfarms$(): Observable<Windfarm[]> {
     return this.http
       .get<Windfarm[]>(this.windfarmsUrl)
       .pipe(

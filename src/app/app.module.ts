@@ -5,6 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FakeBackendInterceptor } from './interceptors/fake-backend.interceptor';
+import { LightningIconComponent } from './shared/icons/lightning-icon/lightning-icon.component';
 
 /** Intercept all HTTP requests and return mock data */
 export const httpInterceptorProviders = [
@@ -17,6 +18,7 @@ export const httpInterceptorProviders = [
   ],
   imports: [
     BrowserModule,
+    LightningIconComponent,
     HttpClientModule,
     AppRoutingModule
   ],

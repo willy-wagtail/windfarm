@@ -5,21 +5,19 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'windfarm'
+    redirectTo: 'capacity-factor'
   },
-
   {
     path: '404',
     loadChildren:
       () => import('./pages/page-not-found/page-not-found.module').then(m => m.PageNotFoundModule)
   },
-
   {
-    path: 'windfarm',
+    path: 'capacity-factor',
     loadChildren:
-      () => import('./pages/windfarm/windfarm.module').then(m => m.WindfarmModule)
+      () => import('./pages/capacity-factor/capacity-factor.module')
+        .then(m => m.CapacityFactorModule)
   },
-
   {
     path: '**',
     redirectTo: '404'
