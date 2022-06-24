@@ -1,26 +1,15 @@
-<header>
-    <h1>
-        Windfarm Capacity Factor
-    </h1>
-
-    <p>
-        Choose a windfarm, start date and end date
-        to show the windfarm's daily <em>Capacity Factor</em>.
-    </p>
-</header>
-
-<div class="filters">
+<form class="filters" #form="ngForm">
     <div class="filter-item">
         <label for="windfarm-select">
             Windfarm
         </label>
 
-        <select name="windfarm" id="windfarm-select">
-            <option selected [value]="null" disabled>
+        <select name="windfarm" id="windfarm-select" [(ngModel)]="windfarmDateRangeForm.windfarm">
+            <option [value]="null" disabled>
                 -
             </option>
 
-            <option *ngFor="let windfarm of windfarms" [value]="windfarm">
+            <option *ngFor="let windfarm of windfarmOptions" [value]="windfarm">
                 {{ windfarm.name }}
             </option>
         </select>
@@ -30,13 +19,13 @@
         <label for="start-date">
             Start Date
         </label>
-        
+
         <div class="datepicker" id="start-date">
             <div class="datepicker-icon">
                 <app-calendar-icon classNames="h-5 w-5 text-gray-500"></app-calendar-icon>
             </div>
 
-            <input type="date" class="datepicker-input">
+            <input type="date" class="datepicker-input" name="startDate" [(ngModel)]="windfarmDateRangeForm.startDate">
         </div>
     </div>
 
@@ -50,11 +39,7 @@
                 <app-calendar-icon classNames="h-5 w-5 text-gray-500"></app-calendar-icon>
             </div>
 
-            <input type="date" class="datepicker-input">
+            <input type="date" class="datepicker-input" name="endDate" [(ngModel)]="windfarmDateRangeForm.endDate">
         </div>
     </div>
-</div>
-
-<div>
-    Table
-</div>
+</form>

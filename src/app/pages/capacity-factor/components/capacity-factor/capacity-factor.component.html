@@ -1,0 +1,17 @@
+<header>
+    <h1>
+        Windfarm Capacity Factor
+    </h1>
+
+    <p>
+        Choose a windfarm, start date and end date
+        to show the windfarm's daily <em>Capacity Factor</em>.
+    </p>
+</header>
+
+<app-windfarm-date-range-form [windfarmOptions]="windfarms" (onChange)="onFormChange($event)">
+</app-windfarm-date-range-form>
+
+<div>
+    Table
+</div>

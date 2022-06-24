@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CapacityFactorComponent } from './components/capacity-factor.component';
+
+import { CapacityFactorComponent } from './components/capacity-factor/capacity-factor.component';
 
 const routes: Routes = [
   {

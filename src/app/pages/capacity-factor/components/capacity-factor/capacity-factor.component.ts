@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Windfarm } from 'src/app/models/windfarm';
 import { WindfarmHttpService } from 'src/app/services/http/windfarm-http.service';
+import { CompletedWindfarmDateRangeForm, WindfarmDateRangeForm } from '../../models/windfarm-date-range-form';
 
 @Component({
   selector: 'app-capacity-factor',
@@ -22,5 +23,8 @@ export class CapacityFactorComponent implements OnInit {
           error: e => console.error(e), // todo: handle loading issues
         }
       )
+  }
+  onFormChange(windfarmDateRangeForm: CompletedWindfarmDateRangeForm): void {
+    console.log(windfarmDateRangeForm);
   }
 }

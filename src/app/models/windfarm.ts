@@ -1,7 +1,9 @@
 import { Megawatts, isMegawatts } from "./energy-units";
 
+export type WindfarmId = string;
+
 export interface Windfarm {
-    readonly id: string;
+    readonly id: WindfarmId;
     readonly name: string;
     readonly totalCapacity: Megawatts;
 }
