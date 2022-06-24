@@ -1,0 +1,37 @@
+<div class="relative overflow-x-auto shadow-md rounded-md">
+    <table class="w-full text-sm text-left">
+        <thead class="text-xs text-gray-500 bg-gray-50 uppercase">
+            <tr>
+                <th *ngFor="let heading of headings" scope="col" class="px-6 py-3">
+                    {{ heading }}
+                </th>
+            </tr>
+        </thead>
+
+        <tbody class="text-gray-500">
+            <tr *ngFor="let item of data" class="odd:bg-white even:bg-gray-50 border-b hover:bg-blue-50">
+                <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
+                    {{ item.date | date: 'mediumDate' }}
+                </th>
+
+                <td class="px-6 py-4 whitespace-nowrap">
+                    {{ item.capacityFactor }}
+                </td>
+
+                <td class="px-6 py-4 whitespace-nowrap">
+                    {{ item.totalCapacity }} MW
+                </td>
+
+                <td class="px-6 py-4 whitespace-nowrap">
+                    {{ item.averageMeterReading }} MWh
+                </td>
+
+                <td class="px-6 py-4 min-w-[12rem]">
+                    <span *ngIf="item.missingMeterReadings !== 0" class="text-red-600">
+                        There were {{ item.missingMeterReadings }} missed meter readings. 
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

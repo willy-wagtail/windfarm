@@ -1,17 +1,25 @@
-<header>
-    <h1>
-        Windfarm Capacity Factor
-    </h1>
+<ng-container *ngIf="!isLoading">
+    <header>
+        <h1>
+            Windfarm Capacity Factor
+        </h1>
 
-    <p>
-        Choose a windfarm, start date and end date
-        to show the windfarm's daily <em>Capacity Factor</em>.
-    </p>
-</header>
+        <p>
+            Choose a windfarm, start date and end date
+            to show the windfarm's daily aggregated <em>Capacity Factor</em>.
+        </p>
+    </header>
 
-<app-windfarm-date-range-form [windfarmOptions]="windfarms" (onChange)="onFormChange($event)">
-</app-windfarm-date-range-form>
+    <div class="mb-5 max-w-3xl">
+        <app-windfarm-date-range-form [windfarmOptions]="windfarms" (onChange)="onFormChange($event)">
+        </app-windfarm-date-range-form>
+    </div>
 
-<div>
-    Table
-</div>
+    <hr class="mb-5 sm:mb-8">
+
+    <app-capacity-factor-table></app-capacity-factor-table>
+</ng-container>
+
+<ng-container *ngIf="isLoading">
+    <app-spinner></app-spinner>
+</ng-container>

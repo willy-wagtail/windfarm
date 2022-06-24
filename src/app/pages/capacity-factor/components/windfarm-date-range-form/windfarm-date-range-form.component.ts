@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { filter, Subscription } from 'rxjs';
+
 import { Windfarm } from 'src/app/models/windfarm';
 import { CompletedWindfarmDateRangeForm, isCompletedForm, WindfarmDateRangeForm } from '../../models/windfarm-date-range-form';
 
@@ -13,6 +14,7 @@ import { CompletedWindfarmDateRangeForm, isCompletedForm, WindfarmDateRangeForm 
 export class WindfarmDateRangeFormComponent implements OnInit, OnDestroy {
 
   @Input() windfarmOptions: Windfarm[] = [];
+
   @Output() onChange: EventEmitter<CompletedWindfarmDateRangeForm> = new EventEmitter();
 
   @ViewChild('form', { static: true }) ngForm!: NgForm;
@@ -21,7 +23,7 @@ export class WindfarmDateRangeFormComponent implements OnInit, OnDestroy {
     windfarm: null,
     startDate: null,
     endDate: null
-  }
+  };
 
   private formChangesSubscription?: Subscription;
 
@@ -31,12 +33,11 @@ export class WindfarmDateRangeFormComponent implements OnInit, OnDestroy {
     this.formChangesSubscription = this.ngForm
       .form
       .valueChanges
+      .pipe(
+        filter(isCompletedForm)
+      )
       .subscribe(
-        form => {
-          if (isCompletedForm(form)) {
-            this.onChange.emit(form)
-          }
-        }
+        form => this.onChange.emit(form)
       )
   }
 

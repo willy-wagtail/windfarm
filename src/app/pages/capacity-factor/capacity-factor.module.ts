@@ -6,16 +6,20 @@ import { CapacityFactorRoutingModule } from './capacity-factor-routing.module';
 import { CalendarIconComponent } from 'src/app/shared/icons/calendar-icon/calendar-icon.component';
 import { WindfarmDateRangeFormComponent } from './components/windfarm-date-range-form/windfarm-date-range-form.component';
 import { CapacityFactorComponent } from './components/capacity-factor/capacity-factor.component';
+import { CapacityFactorTableComponent } from './components/capacity-factor-table/capacity-factor-table.component';
+import { SpinnerComponent } from 'src/app/shared/spinner/spinner.component';
 
 @NgModule({
   declarations: [
     CapacityFactorComponent,
-    WindfarmDateRangeFormComponent
+    WindfarmDateRangeFormComponent,
+    CapacityFactorTableComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     CalendarIconComponent,
+    SpinnerComponent,
     CapacityFactorRoutingModule
   ]
 })

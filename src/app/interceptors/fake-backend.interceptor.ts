@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
   HttpResponse
 } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 
 import { getMockWindfarmArray } from '../mocks/windfarm';
 
@@ -16,8 +16,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
   constructor() { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+
     if (this.isGetAllWindfarms(request)) {
-      return this.createSuccessResponse(getMockWindfarmArray());
+      return this.createSuccessResponse$(
+        getMockWindfarmArray()
+      )
+        .pipe(
+          delay(1000)
+        );
     }
 
     return next.handle(request);
@@ -35,7 +41,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     return regExp.test(req.url);
   }
 
-  private createSuccessResponse(response: unknown): Observable<HttpResponse<unknown>> {
+  private createSuccessResponse$(response: unknown): Observable<HttpResponse<unknown>> {
     return of(
       new HttpResponse(
         {

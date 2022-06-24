@@ -1,4 +1,4 @@
-import { DateTime } from "luxon";
+import { ISODateTimeString } from "./date";
 import { MegawattsPerHour } from "./energy-units";
 
 /** 
@@ -7,6 +7,6 @@ import { MegawattsPerHour } from "./energy-units";
  */
 
 export interface MeterReading {
-    readonly timestamp: DateTime;
+    readonly timestamp: ISODateTimeString;
     readonly reading: MegawattsPerHour;
 }

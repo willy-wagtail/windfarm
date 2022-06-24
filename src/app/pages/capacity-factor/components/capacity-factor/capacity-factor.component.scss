@@ -1,9 +1,9 @@
 :host {
-    @apply my-6 mx-12 block;
+    @apply grow my-6 mx-12 block;
 }
 
 header {
-    @apply mb-8 text-gray-600;
+    @apply mb-5 sm:mb-6 text-gray-600;
 
     > h1 {
         @apply text-xl mb-2 font-medium;
