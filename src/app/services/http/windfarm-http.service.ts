@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, tap } from 'rxjs';
 import { ISODateString } from 'src/app/models/date';
+import { isMeterReadingArray, MeterReading } from 'src/app/models/meter-reading';
 import { Windfarm, isWindfarmArray, WindfarmId } from '../../models/windfarm';
 import { checkTypeGuard } from '../../util/check-type-guard';
 
@@ -27,7 +28,7 @@ export class WindfarmHttpService {
     windfarmId: WindfarmId,
     fromDate: ISODateString,
     toDate: ISODateString
-  ): Observable<any> {
+  ): Observable<MeterReading[]> {
 
     const options = {
       params: new HttpParams()
@@ -36,12 +37,12 @@ export class WindfarmHttpService {
     };
 
     return this.http
-      .get<any>(
+      .get<MeterReading[]>(
         this.getMeterReadingsUrl(windfarmId),
         options
       )
       .pipe(
-        tap(val => checkTypeGuard(val, isWindfarmArray))
+        tap(val => checkTypeGuard(val, isMeterReadingArray))
       );
   }
 

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { tap } from 'rxjs';
 import { Windfarm } from 'src/app/models/windfarm';
 import { WindfarmHttpService } from 'src/app/services/http/windfarm-http.service';
-import { CompletedWindfarmDateRangeForm, WindfarmDateRangeForm } from '../../models/windfarm-date-range-form';
+import { CompletedWindfarmDateRangeForm } from '../../models/windfarm-date-range-form';
 
 @Component({
   selector: 'app-capacity-factor',
@@ -18,11 +17,16 @@ export class CapacityFactorComponent implements OnInit {
   constructor(private windfarmHttpService: WindfarmHttpService) { }
 
   ngOnInit(): void {
+    this.loadWindfarms();
+  }
+
+  onFormChange(windfarmDateRangeForm: CompletedWindfarmDateRangeForm): void {
+    console.log(windfarmDateRangeForm);
+  }
+
+  private loadWindfarms(): void {
     this.windfarmHttpService
       .getAllWindfarms$()
-      .pipe(
-        tap()
-      )
       .subscribe(
         {
           next: wfs => {
@@ -35,9 +39,6 @@ export class CapacityFactorComponent implements OnInit {
             this.isLoading = false;
           },
         }
-      )
-  }
-  onFormChange(windfarmDateRangeForm: CompletedWindfarmDateRangeForm): void {
-    console.log(windfarmDateRangeForm);
+      );
   }
 }

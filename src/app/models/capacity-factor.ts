@@ -1,6 +1,4 @@
 
-import { DateRange } from "./date-range";
-
 /**
  * The capacity factor for any given period of time 
  * is the amount of electricity produced, divided 
@@ -9,8 +7,3 @@ import { DateRange } from "./date-range";
  */
 
 export type CapacityFactor = number;
-
-export interface CapacityFactorOverPeriod {
-    readonly period: DateRange;
-    readonly capacityFactory: CapacityFactor;
-}

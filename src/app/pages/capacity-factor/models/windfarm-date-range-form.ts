@@ -12,8 +12,8 @@ export interface CompletedWindfarmDateRangeForm {
 }
 
 /**
- * The HTML element input[type=datepicker] can be an 
- * empty string if value is cancelled.
+ * The HTML element input[type=datepicker] can be an empty
+ * string if value is deleted by pressing the 'x' button.
  */
 export interface IncompleteWindfarmDateRangeForm {
     windfarm: Windfarm | null;

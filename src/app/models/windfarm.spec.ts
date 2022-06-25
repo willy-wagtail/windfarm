@@ -14,7 +14,7 @@ describe('Windfarm', () => {
             expect(isWindfarm(val)).toBe(true);
         });
 
-        it('returns false if Windfarm.id incorrect', () => {
+        it('returns false if Windfarm.id is incorrect', () => {
             let val: any = {
                 id: 123, // purposely not a string
                 name: 'Windfarm A',
@@ -24,7 +24,7 @@ describe('Windfarm', () => {
             expect(isWindfarm(val)).toBe(false);
         });
 
-        it('returns false if Windfarm.name incorrect', () => {
+        it('returns false if Windfarm.name is incorrect', () => {
             let val: any = {
                 id: 'abc',
                 name: 123, // purposely not a string
@@ -34,7 +34,7 @@ describe('Windfarm', () => {
             expect(isWindfarm(val)).toBe(false);
         });
 
-        it('returns false if Windfarm.totalCapacity incorrect', () => {
+        it('returns false if Windfarm.totalCapacity is incorrect', () => {
             let val: any = {
                 id: 'abc',
                 name: 'Windfarm A',
@@ -42,6 +42,14 @@ describe('Windfarm', () => {
             };
 
             expect(isWindfarm(val)).toBe(false);
+        });
+
+        it('returns false if null', () => {
+            expect(isWindfarm(null)).toBe(false);
+        });
+
+        it('returns false if undefined', () => {
+            expect(isWindfarm(undefined)).toBe(false);
         });
     });
 

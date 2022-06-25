@@ -9,6 +9,9 @@ import {
 import { delay, Observable, of } from 'rxjs';
 
 import { getMockWindfarmArray } from '../mocks/windfarm';
+import { getMockMeterReadings_forOneDay } from '../mocks/meter-reading';
+import { MeterReading } from '../models/meter-reading';
+import { isISODateString } from '../models/date';
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -16,6 +19,21 @@ export class FakeBackendInterceptor implements HttpInterceptor {
   constructor() { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+
+    if (this.isGetWindfarmMeterReadings(request)) {
+      const firstDay = request.params.get('fromDate');
+
+      const mockMeterReadings: MeterReading[] = isISODateString(firstDay)
+        ? getMockMeterReadings_forOneDay(firstDay)
+        : getMockMeterReadings_forOneDay()
+
+      return this.createSuccessResponse$(
+        mockMeterReadings
+      )
+        .pipe(
+          delay(1000)
+        );
+    }
 
     if (this.isGetAllWindfarms(request)) {
       return this.createSuccessResponse$(
@@ -29,8 +47,15 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     return next.handle(request);
   }
 
+  private isGetWindfarmMeterReadings(req: HttpRequest<unknown>): boolean {
+    return this.isGetRequest(req) &&
+      this.urlMatches(req, new RegExp('api/windfarms/')) &&
+      this.urlMatches(req, new RegExp('/readings'));
+  }
+
   private isGetAllWindfarms(req: HttpRequest<unknown>): boolean {
-    return this.isGetRequest(req) && this.urlMatches(req, new RegExp('api/windfarms'));
+    return this.isGetRequest(req) &&
+      this.urlMatches(req, new RegExp('api/windfarms'));
   }
 
   private isGetRequest(req: HttpRequest<unknown>): boolean {

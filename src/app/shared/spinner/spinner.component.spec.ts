@@ -21,7 +21,7 @@ describe('SpinnerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('default size is m', () => {
+  it('default size is \'m\'', () => {
     expect(component.size).toBe('m');
   });
 });

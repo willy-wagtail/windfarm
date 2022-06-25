@@ -8,20 +8,22 @@ export interface Windfarm {
     readonly totalCapacity: Megawatts;
 }
 
-export const isWindfarm = (val: any): val is Windfarm => {
-    return val &&
-        typeof val.id === "string" &&
-        typeof val.name === "string" &&
-        isMegawatts(val.totalCapacity)
-}
+export const isWindfarm =
+    (val: any): val is Windfarm => {
+        return !!val &&
+            typeof val.id === "string" &&
+            typeof val.name === "string" &&
+            isMegawatts(val.totalCapacity)
+    };
 
-export const isWindfarmArray = (val: unknown): val is Windfarm[] => {
-    if (
-        !Array.isArray(val) ||
-        val.some((v) => !isWindfarm(v))
-    ) {
+export const isWindfarmArray =
+    (val: unknown): val is Windfarm[] => {
+        if (
+            Array.isArray(val) &&
+            val.every((v) => isWindfarm(v))
+        ) {
+            return true;
+        }
+
         return false;
-    }
-
-    return true;
-}
+    };
