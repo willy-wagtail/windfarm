@@ -5,13 +5,14 @@ interface TestPerson {
     age: number;
 }
 
-const isTestPerson = (value: any): value is TestPerson => {
-    return (
-        value &&
-        typeof value.name === "string" &&
-        typeof value.age === "number"
-    );
-}
+const isTestPerson =
+    (value: any): value is TestPerson => {
+        return (
+            value &&
+            typeof value.name === "string" &&
+            typeof value.age === "number"
+        );
+    };
 
 describe('checkTypeGuard function', () => {
 
@@ -30,7 +31,7 @@ describe('checkTypeGuard function', () => {
         let value: any = {
             name: 50,
             age: 'William'
-        };
+        }; // name and age has wrong types
 
         expect(() => checkTypeGuard(value, isTestPerson))
             .toThrowError('TypeGuard check failed.');
@@ -44,8 +45,9 @@ describe('checkTypeGuard function', () => {
 
         let customErrorMsg = 'Custom error message';
 
-        expect(() => checkTypeGuard(value, isTestPerson, customErrorMsg))
-            .toThrowError(customErrorMsg);
+        expect(
+            () => checkTypeGuard(value, isTestPerson, customErrorMsg)
+        ).toThrowError(customErrorMsg);
 
     });
 });

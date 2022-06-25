@@ -23,6 +23,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     if (this.isGetWindfarmMeterReadings(request)) {
       const firstDay = request.params.get('fromDate');
 
+      /** Return one day's worth of data */
       const mockMeterReadings: MeterReading[] = isISODateString(firstDay)
         ? getMockMeterReadings_forOneDay(firstDay)
         : getMockMeterReadings_forOneDay()
@@ -31,7 +32,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         mockMeterReadings
       )
         .pipe(
-          delay(1000)
+          delay(1500)
         );
     }
 
@@ -40,7 +41,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         getMockWindfarmArray()
       )
         .pipe(
-          delay(1000)
+          delay(1500)
         );
     }
 

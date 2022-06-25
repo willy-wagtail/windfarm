@@ -1,12 +1,12 @@
+<app-spinner *ngIf="isLoading"></app-spinner>
+
 <ng-container *ngIf="!isLoading">
     <header>
-        <h1>
-            Windfarm Capacity Factor
-        </h1>
+        <h1>Windfarm Capacity Factor</h1>
 
         <p>
-            Choose a windfarm, start date and end date
-            to show the windfarm's daily aggregated <em>Capacity Factor</em>.
+            Choose a windfarm, start date and end date to show the windfarm's daily
+            aggregated <em>Capacity Factor</em>.
         </p>
     </header>
 
@@ -18,8 +18,4 @@
     <hr class="mb-5 sm:mb-8">
 
     <app-capacity-factor-table></app-capacity-factor-table>
-</ng-container>
-
-<ng-container *ngIf="isLoading">
-    <app-spinner></app-spinner>
 </ng-container>
