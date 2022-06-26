@@ -18,9 +18,9 @@ export type ISODateString = `${number}-${number}-${number}`
 /** 
  * E.g. 2022-06-24T17:39:43.155Z 
  * 
- * TODO- Replace generic string with regexp matched string type.
+ * TODO - Replace generic string type with stricter matched string type.
  */
-export type ISODateTimeString = string;
+export type ISODateTimeString = Exclude<string, ISODateString>;
 
 export const isISODateString =
     (val: unknown): val is ISODateString => {

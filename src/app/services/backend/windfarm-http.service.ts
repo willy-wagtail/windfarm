@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable, tap } from 'rxjs';
-import { ISODateString } from 'src/app/models/date';
+import { ISODateString } from 'src/app/models/datetime/date';
 import { isMeterReadingArray, MeterReading } from 'src/app/models/meter-reading';
 import { Windfarm, isWindfarmArray, WindfarmId } from '../../models/windfarm';
 import { checkTypeGuard } from '../../util/check-type-guard';
@@ -24,7 +24,7 @@ export class WindfarmHttpService {
       );
   }
 
-  getMeterReadings$(
+  getHourlyMeterReadings$(
     windfarmId: WindfarmId,
     fromDate: ISODateString,
     toDate: ISODateString
@@ -47,6 +47,6 @@ export class WindfarmHttpService {
   }
 
   private getMeterReadingsUrl(windfarmId: WindfarmId): string {
-    return this.WINDFARMS_URL + '/' + windfarmId + '/readings'
+    return this.WINDFARMS_URL + '/' + windfarmId + '/readings';
   }
 }

@@ -11,7 +11,7 @@ import { delay, Observable, of } from 'rxjs';
 import { getMockWindfarmArray } from '../mocks/windfarm';
 import { getMockMeterReadings_forOneDay } from '../mocks/meter-reading';
 import { MeterReading } from '../models/meter-reading';
-import { isISODateString } from '../models/date';
+import { isISODateString } from '../models/datetime/date';
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -22,11 +22,15 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
     if (this.isGetWindfarmMeterReadings(request)) {
       const firstDay = request.params.get('fromDate');
+      const lastDay = request.params.get('toDate');
 
-      /** Return one day's worth of data */
-      const mockMeterReadings: MeterReading[] = isISODateString(firstDay)
-        ? getMockMeterReadings_forOneDay(firstDay)
-        : getMockMeterReadings_forOneDay()
+      const mockMeterReadings: MeterReading[] =
+        isISODateString(firstDay) && isISODateString(lastDay)
+
+          ? getMockMeterReadings_forOneDay(firstDay)
+            .concat(getMockMeterReadings_forOneDay(lastDay))
+
+          : getMockMeterReadings_forOneDay();
 
       return this.createSuccessResponse$(
         mockMeterReadings

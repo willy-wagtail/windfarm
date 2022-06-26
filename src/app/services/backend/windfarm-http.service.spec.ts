@@ -6,7 +6,7 @@ import { getMockWindfarmArray } from '../../mocks/windfarm';
 import { Windfarm, WindfarmId } from '../../models/windfarm';
 import { MeterReading } from 'src/app/models/meter-reading';
 import { getMockMeterReadingArray } from 'src/app/mocks/meter-reading';
-import { ISODateString } from 'src/app/models/date';
+import { ISODateString } from 'src/app/models/datetime/date';
 
 describe('WindfarmHttpService', () => {
 
@@ -16,7 +16,8 @@ describe('WindfarmHttpService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule],
+      providers: [WindfarmHttpService]
     });
 
     httpTestingController = TestBed.inject(HttpTestingController);
@@ -36,13 +37,16 @@ describe('WindfarmHttpService', () => {
       expectedURL = 'api/windfarms'
     });
 
-    it('makes an HTTP GET request to the correct URL', () => {
+    it('makes an HTTP GET request to the correct URL', (done: DoneFn) => {
       const mockWindfarmArray: Windfarm[] = getMockWindfarmArray();
 
       windfarmHttpService
         .getAllWindfarms$()
         .subscribe(
-          data => expect(data).toEqual(mockWindfarmArray)
+          data => {
+            expect(data).toEqual(mockWindfarmArray);
+            done();
+          }
         );
 
       const req = httpTestingController.expectOne(expectedURL);
@@ -51,7 +55,7 @@ describe('WindfarmHttpService', () => {
       httpTestingController.verify();
     });
 
-    it('throws error if response fails typeguard', () => {
+    it('throws error if response fails typeguard', (done: DoneFn) => {
       const mockWindfarmArray: any[] = getMockWindfarmArray();
       mockWindfarmArray[1].name = 123 // should be of type string
 
@@ -59,8 +63,11 @@ describe('WindfarmHttpService', () => {
         .getAllWindfarms$()
         .subscribe(
           {
-            next: _ => fail('Expected typeguard to throw exception'),
-            error: e => expect(e.message).toEqual('TypeGuard check failed.')
+            next: _ => done.fail('Expected typeguard to throw exception'),
+            error: e => {
+              expect(e.message).toEqual('TypeGuard check failed.');
+              done();
+            }
           }
         );
 
@@ -71,7 +78,7 @@ describe('WindfarmHttpService', () => {
     });
   });
 
-  describe('getMeterReadings$', () => {
+  describe('getHourlyMeterReadings$', () => {
 
     let windfarmId: WindfarmId;
     let fromDate: ISODateString;
@@ -87,13 +94,16 @@ describe('WindfarmHttpService', () => {
       expectedURL = `api/windfarms/${windfarmId}/readings?fromDate=${fromDate}&toDate=${toDate}`;
     });
 
-    it('makes an HTTP GET request to the correct URL', () => {
+    it('makes an HTTP GET request to the correct URL', (done: DoneFn) => {
       const mockMeterReadings: MeterReading[] = getMockMeterReadingArray();
 
       windfarmHttpService
-        .getMeterReadings$(windfarmId, fromDate, toDate)
+        .getHourlyMeterReadings$(windfarmId, fromDate, toDate)
         .subscribe(
-          data => expect(data).toEqual(mockMeterReadings)
+          data => {
+            expect(data).toEqual(mockMeterReadings);
+            done();
+          }
         );
 
       const req = httpTestingController.expectOne(expectedURL);
@@ -102,16 +112,19 @@ describe('WindfarmHttpService', () => {
       httpTestingController.verify();
     });
 
-    it('throws error if response fails typeguard', () => {
+    it('throws error if response fails typeguard', (done: DoneFn) => {
       const mockMeterReadings: any[] = getMockMeterReadingArray();
       mockMeterReadings[1].reading = 'Wrong Type'; // should be of type MegawattHour
 
       windfarmHttpService
-        .getMeterReadings$(windfarmId, fromDate, toDate)
+        .getHourlyMeterReadings$(windfarmId, fromDate, toDate)
         .subscribe(
           {
-            next: _ => fail('Expected typeguard to throw exception'),
-            error: e => expect(e.message).toEqual('TypeGuard check failed.')
+            next: _ => done.fail('Expected typeguard to throw exception'),
+            error: e => {
+              expect(e.message).toEqual('TypeGuard check failed.');
+              done();
+            }
           }
         );
 

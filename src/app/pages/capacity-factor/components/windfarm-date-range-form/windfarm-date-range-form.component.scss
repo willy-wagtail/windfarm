@@ -25,6 +25,6 @@
 
     > .datepicker-input {
         @apply bg-gray-50 rounded-md border border-gray-300 text-gray-500 sm:text-sm  block w-full pl-10 p-2.5;
-        @apply focus:ring-blue-500 focus:border-blue-500
+        @apply hover:border-blue-400 focus:ring-blue-500 focus:border-blue-500;
     }
 }

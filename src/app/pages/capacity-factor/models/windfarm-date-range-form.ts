@@ -1,4 +1,4 @@
-import { ISODateString } from "src/app/models/date";
+import { ISODateString } from "src/app/models/datetime/date";
 import { Windfarm } from "src/app/models/windfarm";
 
 export type WindfarmDateRangeForm

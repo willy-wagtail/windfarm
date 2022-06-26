@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Windfarm } from 'src/app/models/windfarm';
-import { WindfarmHttpService } from 'src/app/services/http/windfarm-http.service';
+import { WindfarmService } from 'src/app/services/windfarm/windfarm.service';
 import { CompletedWindfarmDateRangeForm } from '../../models/windfarm-date-range-form';
 
 @Component({
@@ -14,7 +14,7 @@ export class CapacityFactorComponent implements OnInit {
 
   isLoading = true;
 
-  constructor(private windfarmHttpService: WindfarmHttpService) { }
+  constructor(private windfarmService: WindfarmService) { }
 
   ngOnInit(): void {
     this.loadWindfarms();
@@ -25,7 +25,7 @@ export class CapacityFactorComponent implements OnInit {
   }
 
   private loadWindfarms(): void {
-    this.windfarmHttpService
+    this.windfarmService
       .getAllWindfarms$()
       .subscribe(
         {

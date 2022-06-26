@@ -1,4 +1,4 @@
-import { ISODateString } from "../models/date";
+import { ISODateString } from "../models/datetime/date";
 import { MeterReading } from "../models/meter-reading";
 
 export const getMockMeterReading_A: () => MeterReading =
@@ -9,7 +9,7 @@ export const getMockMeterReading_A: () => MeterReading =
 
 export const getMockMeterReading_B: () => MeterReading =
     () => ({
-        timestamp: '2022-06-26T17:01:30.490Z',
+        timestamp: '2022-06-26T13:01:30.490Z',
         reading: 15
     });
 

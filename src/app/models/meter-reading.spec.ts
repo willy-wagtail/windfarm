@@ -1,5 +1,3 @@
-import { DateTime } from "luxon";
-import { isMegawattHour, isMegawatts } from "./energy-units";
 import { isMeterReading, isMeterReadingArray, MeterReading } from "./meter-reading";
 
 describe('MeterReading', () => {

@@ -1,5 +1,6 @@
-import { isISODateTimeString, ISODateTimeString } from "./date";
+import { isISODateTimeString, ISODateTimeString } from "./datetime/date";
 import { isMegawattHour, MegawattHour } from "./energy-units";
+import { HourOfDay } from "./datetime/time";
 
 /** 
  * The Wind farm has a meter that reads the 
@@ -9,6 +10,16 @@ import { isMegawattHour, MegawattHour } from "./energy-units";
 export interface MeterReading {
     readonly timestamp: ISODateTimeString;
     readonly reading: MegawattHour;
+}
+
+/**
+ * Index MeterReading.timestamp
+ * by date and hour for quicker access.
+ */
+export type IndexedHourlyMeterReadings = {
+    [key in ISODateTimeString]: {
+        [key in HourOfDay]: MeterReading;
+    }
 }
 
 export const isMeterReading =
