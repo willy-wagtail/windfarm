@@ -8,6 +8,12 @@ export interface Windfarm {
     readonly totalCapacity: Megawatts;
 }
 
+export const isWindfarmId =
+    (val: any): val is WindfarmId => {
+        return !!val &&
+            typeof val === "string";
+    };
+
 export const isWindfarm =
     (val: any): val is Windfarm => {
         return !!val &&

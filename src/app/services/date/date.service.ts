@@ -12,10 +12,10 @@ export class DateService {
   getDatesBetween(
     from: ISODateString,
     to: ISODateString
-  ): ISODateTimeString[] {
+  ): ISODateString[] {
     const fromDate: Date = new Date(from);
     const toDate: Date = new Date(to);
-    const result = [];
+    const result: ISODateString[] = [];
 
     let currentDate: Date = fromDate;
 

@@ -1,6 +1,6 @@
-<app-spinner *ngIf="isLoading"></app-spinner>
+<app-spinner *ngIf="loadingWindfarms"></app-spinner>
 
-<ng-container *ngIf="!isLoading">
+<ng-container *ngIf="!loadingWindfarms">
     <header>
         <h1>Windfarm Capacity Factor</h1>
 
@@ -17,5 +17,14 @@
 
     <hr class="mb-5 sm:mb-8">
 
-    <app-capacity-factor-table></app-capacity-factor-table>
+    <ng-container *ngIf="currentFilters !== null">
+        <div class="grow" *ngIf="loadingRows">
+            <app-spinner></app-spinner>
+        </div>
+
+        <div class="grow max-w-5xl" *ngIf="!loadingRows">
+            <app-capacity-factor-table [rows]="rows"></app-capacity-factor-table>
+        </div>
+    </ng-container>
+
 </ng-container>

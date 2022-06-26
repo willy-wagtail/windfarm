@@ -12,11 +12,12 @@ import { getMockWindfarmArray } from '../mocks/windfarm';
 import { getMockMeterReadings_forOneDay } from '../mocks/meter-reading';
 import { MeterReading } from '../models/meter-reading';
 import { isISODateString } from '../models/datetime/date';
+import { DateService } from '../services/date/date.service';
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
 
-  constructor() { }
+  constructor(private dateService: DateService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
@@ -24,19 +25,16 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       const firstDay = request.params.get('fromDate');
       const lastDay = request.params.get('toDate');
 
-      const mockMeterReadings: MeterReading[] =
-        isISODateString(firstDay) && isISODateString(lastDay)
-
-          ? getMockMeterReadings_forOneDay(firstDay)
-            .concat(getMockMeterReadings_forOneDay(lastDay))
-
-          : getMockMeterReadings_forOneDay();
+      const mockMeterReadings: MeterReading[] = this.getMockMeterReadings(
+        firstDay,
+        lastDay
+      );
 
       return this.createSuccessResponse$(
         mockMeterReadings
       )
         .pipe(
-          delay(1500)
+          delay(1000)
         );
     }
 
@@ -45,7 +43,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         getMockWindfarmArray()
       )
         .pipe(
-          delay(1500)
+          delay(1000)
         );
     }
 
@@ -80,5 +78,21 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
       )
     );
+  }
+
+  private getMockMeterReadings(firstDay: string | null, lastDay: string | null) {
+    if (isISODateString(firstDay) && isISODateString(lastDay)) {
+
+      return this.dateService
+        .getDatesBetween(firstDay, lastDay)
+        .flatMap(
+          date => getMockMeterReadings_forOneDay(
+            date,
+            Math.random() < 0.3
+          )
+        )
+    }
+
+    return getMockMeterReadings_forOneDay();
   }
 }

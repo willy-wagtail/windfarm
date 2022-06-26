@@ -1,5 +1,5 @@
 <div class="relative overflow-x-auto shadow-md rounded-md">
-    <table class="w-full text-sm text-left">
+    <table class="w-full text-sm text-center">
         <thead class="text-xs text-gray-500 bg-gray-50 uppercase">
             <tr>
                 <th *ngFor="let heading of headings" scope="col" class="px-6 py-3">
@@ -8,27 +8,29 @@
             </tr>
         </thead>
 
-        <tbody class="text-gray-500">
-            <tr *ngFor="let item of data" class="odd:bg-white even:bg-gray-50 border-b hover:bg-blue-50">
+        <tbody>
+            <tr *ngFor="let row of rows" class="odd:bg-white even:bg-gray-50 border-b hover:bg-blue-50"
+                [ngClass]="row.missingHourlyMeterReadings > 0 ? 'text-red-600' : 'text-gray-500'">
                 <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                    {{ item.date | date: 'mediumDate' }}
+                    {{ row.date | date: 'mediumDate' }}
                 </th>
 
                 <td class="px-6 py-4 whitespace-nowrap">
-                    {{ item.capacityFactor }}
+                    {{ row.knownProduction }} MWh
                 </td>
 
                 <td class="px-6 py-4 whitespace-nowrap">
-                    {{ item.totalCapacity }} MW
+                    {{ row.capacity }} MW
                 </td>
 
                 <td class="px-6 py-4 whitespace-nowrap">
-                    {{ item.averageMeterReading }} MWh
+                    {{ row.capacityFactor | number : '1.2-2' }}
                 </td>
 
                 <td class="px-6 py-4 min-w-[12rem]">
-                    <span *ngIf="item.missingMeterReadings !== 0" class="text-red-600">
-                        There were {{ item.missingMeterReadings }} missed meter readings. 
+                    <span *ngIf="row.missingHourlyMeterReadings > 0">
+                        There were {{ row.missingHourlyMeterReadings }} {{row.missingHourlyMeterReadings > 1? 'hours' :
+                        'hour'}} of missing meter {{row.missingHourlyMeterReadings > 1? 'readings' : 'reading'}}.
                     </span>
                 </td>
             </tr>

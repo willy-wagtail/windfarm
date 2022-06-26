@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { filter, Subscription } from 'rxjs';
 
 import { Windfarm } from 'src/app/models/windfarm';
-import { CompletedWindfarmDateRangeForm, isCompletedForm, WindfarmDateRangeForm } from '../../models/windfarm-date-range-form';
+import { CompletedWindfarmDateRangeForm, isCompletedForm, WindfarmDateRangeForm, isWindfarmDateRangeForm } from '../../models/windfarm-date-range-form';
 
 @Component({
   selector: 'app-windfarm-date-range-form',
@@ -20,7 +20,7 @@ export class WindfarmDateRangeFormComponent implements OnInit, OnDestroy {
   @ViewChild('form', { static: true }) ngForm!: NgForm;
 
   windfarmDateRangeForm: WindfarmDateRangeForm = {
-    windfarm: null,
+    windfarmId: null,
     startDate: null,
     endDate: null
   };
@@ -34,6 +34,7 @@ export class WindfarmDateRangeFormComponent implements OnInit, OnDestroy {
       .form
       .valueChanges
       .pipe(
+        filter(isWindfarmDateRangeForm),
         filter(isCompletedForm)
       )
       .subscribe(

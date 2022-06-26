@@ -13,13 +13,16 @@ export interface MeterReading {
 }
 
 /**
- * Index MeterReading.timestamp
- * by date and hour for quicker access.
+ * Index MeterReadings by date and hour for quicker access.
+ * - Can have missing hourly readings.
  */
+
 export type IndexedHourlyMeterReadings = {
-    [key in ISODateTimeString]: {
-        [key in HourOfDay]: MeterReading;
-    }
+    [key in HourOfDay]?: MeterReading;
+}
+
+export type IndexedDailyHourlyMeterReadings = {
+    [key in ISODateTimeString]: IndexedHourlyMeterReadings;
 }
 
 export const isMeterReading =

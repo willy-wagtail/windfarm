@@ -9,7 +9,7 @@ describe('WindfarmDateRangeForm', () => {
             'returns true if WindfarmDateRangeForm is CompletedWindfarmDateRangeForm',
             () => {
                 const form: WindfarmDateRangeForm = {
-                    windfarm: getMockWindfarm_A(),
+                    windfarmId: getMockWindfarm_A().id,
                     startDate: '2022-01-01',
                     endDate: '2022-02-01'
                 };
@@ -22,7 +22,7 @@ describe('WindfarmDateRangeForm', () => {
             'returns false if WindfarmDateRangeForm is IncompleteWindfarmDateRangeForm',
             () => {
                 const form: WindfarmDateRangeForm = {
-                    windfarm: getMockWindfarm_A(),
+                    windfarmId: getMockWindfarm_A().id,
                     startDate: '',
                     endDate: '2022-02-01'
                 };

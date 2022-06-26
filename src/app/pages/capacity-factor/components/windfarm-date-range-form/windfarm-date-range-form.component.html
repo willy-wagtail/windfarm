@@ -4,12 +4,12 @@
             Windfarm
         </label>
 
-        <select name="windfarm" id="windfarm-select" [(ngModel)]="windfarmDateRangeForm.windfarm">
+        <select name="windfarmId" id="windfarm-select" [(ngModel)]="windfarmDateRangeForm.windfarmId">
             <option [value]="null" disabled>
                 -
             </option>
 
-            <option *ngFor="let windfarm of windfarmOptions" [value]="windfarm">
+            <option *ngFor="let windfarm of windfarmOptions" [value]="windfarm.id">
                 {{ windfarm.name }}
             </option>
         </select>

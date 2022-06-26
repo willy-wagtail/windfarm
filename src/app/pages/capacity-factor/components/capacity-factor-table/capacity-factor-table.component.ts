@@ -1,44 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { CapacityFactorTableRow } from '../../models/capacity-factor-table-row';
 
 @Component({
   selector: 'app-capacity-factor-table',
   templateUrl: './capacity-factor-table.component.html',
-  styleUrls: ['./capacity-factor-table.component.scss']
+  styleUrls: ['./capacity-factor-table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CapacityFactorTableComponent implements OnInit {
 
+  @Input() rows: CapacityFactorTableRow[] = [];
+
   readonly headings = [
     'Date', 
-    'Capacity Factor', 
+    'Electricity Produced',
     'Total Capacity',
-    'Avg. Meter Reading',
+    'Capacity Factor', 
     'Notes'
   ];
-
-  data = [
-    {
-      date: '2021-10-10',
-      capacityFactor: 0.8,
-      averageMeterReading: 10.9,
-      totalCapacity: 55,
-      missingMeterReadings: 2
-    },
-    {
-      date: '2021-10-11',
-      capacityFactor: 0.56,
-      averageMeterReading: 34.9,
-      totalCapacity: 55,
-      missingMeterReadings: 0
-    },
-    {
-      date: '2021-10-12',
-      capacityFactor: 0.29,
-      averageMeterReading: 49.8,
-      totalCapacity: 55,
-      missingMeterReadings: 4
-    },
-  ];
-
+  
   constructor() { }
 
   ngOnInit(): void {
