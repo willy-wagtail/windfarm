@@ -71,3 +71,5 @@ Angular uses strict TypeScript by default.
 - Backend data, such as list of windfarms, and meter readings are not subject to change, and can be aggresively cached, either using a service with rxjs subjects, angular/pwa setup with service workers, or other means.
 
 - Cypress e2e testing.
+
+- if extended table features are required, I have used AgGrid in the past which has extensive table features, even things like Pivot tables. It does have a large ramp-up and learning curve if new to it though.
