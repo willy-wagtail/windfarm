@@ -72,14 +72,13 @@ Angular uses strict TypeScript by default.
 
 - Some of the meter reading's logic is perhaps better lived in the backend and served up to the UI. Things such as the capacity factor calculations, daily electricity produced per windfarm, and so on. This is so that if another backend service requires it (perhaps a Machine Learning team), then the logic isn't written in two places. 
 
-    - Also, if floating point precision matters, then calculations are a concern for the UI. Explore using BigInt, or libraries like bigdecimal js, or just doing it in backend.
+    - Also, if floating point precision matters, then calculations using js Math api are a concern. Explore using js's BigInt, or libraries like bigdecimal js, or just doing it in backend.
 
-- Backend data, such as list of windfarms, and meter readings are not subject to change, and can be aggresively cached, either using a service with rxjs subjects, angular/pwa setup with service workers, or other means. Ideally backend caching too.
-
+- Backend data, such as list of windfarms, and meter readings are not subject to frequent change (at least I assume!), so can be aggresively cached, either using a service with rxjs subjects, angular/pwa setup with service workers, or other means. Ideally backend caching too.
 
 - if extended table features are required, I have used AgGrid in the past which has extensive table features, even things like Pivot tables. It does have a large ramp-up and learning curve if new to it though.
 
-- in the smallest screen sizes, consider reducing number of columns in the table to only what is required.
+- In the smallest screen sizes, consider reducing number of columns in the table to only what is required for better UX.
 
 - Add e2e testing.
 - Add eslint and prettier setup, husky to run these prepush/pre-commit
