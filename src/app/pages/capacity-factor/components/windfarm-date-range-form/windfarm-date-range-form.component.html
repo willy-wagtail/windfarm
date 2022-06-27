@@ -39,7 +39,8 @@
                 <app-calendar-icon classNames="h-5 w-5 text-gray-500"></app-calendar-icon>
             </div>
 
-            <input type="date" class="datepicker-input" name="endDate" [(ngModel)]="windfarmDateRangeForm.endDate">
+            <input type="date" class="datepicker-input" name="endDate" [max]="getMaxEndDate()"
+                [(ngModel)]="windfarmDateRangeForm.endDate">
         </div>
     </div>
 </form>

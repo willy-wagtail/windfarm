@@ -17,6 +17,15 @@
 
     <hr class="mb-5 sm:mb-8">
 
+    <div *ngIf="currentFilters === null"
+        class="flex align-center max-w-3xl p-4 mb-4  text-blue-600 bg-blue-50 rounded-md" role="alert">
+        <app-info-icon></app-info-icon>
+
+        <p class="ml-3">
+            Please fill in the above form to show windfarm data.
+        </p>
+    </div>
+
     <ng-container *ngIf="currentFilters !== null">
         <div class="grow" *ngIf="loadingRows">
             <app-spinner></app-spinner>

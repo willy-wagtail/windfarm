@@ -9,6 +9,7 @@ import { CapacityFactorComponent } from './components/capacity-factor/capacity-f
 import { CapacityFactorTableComponent } from './components/capacity-factor-table/capacity-factor-table.component';
 import { SpinnerComponent } from 'src/app/shared/spinner/spinner.component';
 import { ExclamationIconComponent } from 'src/app/shared/icons/exclamation-icon/exclamation-icon.component';
+import { InfoIconComponent } from 'src/app/shared/icons/info-icon/info-icon.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ExclamationIconComponent } from 'src/app/shared/icons/exclamation-icon/
     FormsModule,
     CalendarIconComponent,
     ExclamationIconComponent,
+    InfoIconComponent,
     SpinnerComponent,
     CapacityFactorRoutingModule
   ]

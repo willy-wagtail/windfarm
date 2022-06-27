@@ -29,10 +29,10 @@
 
                 <td class="px-6 py-4 ">
                     <div *ngIf="row.missingHourlyMeterReadings > 0" class="flex text-left items-center min-w-[22rem]">
-                        <app-exclamation-icon classNames="w-5 h-5"></app-exclamation-icon>
+                        <app-exclamation-icon classNames="w-6 h-6"></app-exclamation-icon>
 
-                        <p class="ml-3" *ngIf="row.missingHourlyMeterReadings > 0">
-                            There were {{ row.missingHourlyMeterReadings }} {{row.missingHourlyMeterReadings > 1?
+                        <p class="ml-2" *ngIf="row.missingHourlyMeterReadings > 0">
+                            There are {{ row.missingHourlyMeterReadings }} {{row.missingHourlyMeterReadings > 1?
                             'hours' :
                             'hour'}} of missing meter {{row.missingHourlyMeterReadings > 1? 'readings' : 'reading'}}.
                         </p>
