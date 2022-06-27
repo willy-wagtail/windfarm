@@ -26,6 +26,7 @@ I assume there is a backend with two endpoints below.
     - returns array of HOURLY windfarm meter readings for a single windfarm. (The requirements doc says these are stored in a DB).
 
 I use Angular's Http Interceptor to intercept these calls and return mocks. I have added a 1 second delay to each call to mimick network latency.
+    - I generate random meter readings in the MeterReadings mocks, as well as occasional missing data.
 
 ### Services
 
