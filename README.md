@@ -61,7 +61,7 @@ Following the "Onion" architecture, I created layers of services with defined re
 
 Angular uses strict TypeScript by default.
 
-- Data from backend is external and unknown. TypeScript only gives strict type-safety at compile time, so I like to add type-guards at this the HTTP service layer to guarantee run-time type-safety of data coming into the app.  There are libraries that help, but I wrote my own type-guards in each /model class and wrote a function in /util to check it.
+- Data from backend is external and unknown. TypeScript only gives strict type-safety at compile time, so I like to add type-guards at the HTTP service layer to guarantee run-time type-safety of data coming into the app.  There are libraries that help, but I wrote my own type-guards in each /model class and wrote a function in /util to check it.
 
 - Same for data emitted by browser events. Typeguards are used to make sure they are as we expect, and force us to handle each case.
 
