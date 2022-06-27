@@ -27,11 +27,17 @@
                     {{ row.capacityFactor | number : '1.2-2' }}
                 </td>
 
-                <td class="px-6 py-4 min-w-[12rem]">
-                    <span *ngIf="row.missingHourlyMeterReadings > 0">
-                        There were {{ row.missingHourlyMeterReadings }} {{row.missingHourlyMeterReadings > 1? 'hours' :
-                        'hour'}} of missing meter {{row.missingHourlyMeterReadings > 1? 'readings' : 'reading'}}.
-                    </span>
+                <td class="px-6 py-4 ">
+                    <div *ngIf="row.missingHourlyMeterReadings > 0" class="flex text-left items-center min-w-[22rem]">
+                        <app-exclamation-icon classNames="w-5 h-5"></app-exclamation-icon>
+
+                        <p class="ml-3" *ngIf="row.missingHourlyMeterReadings > 0">
+                            There were {{ row.missingHourlyMeterReadings }} {{row.missingHourlyMeterReadings > 1?
+                            'hours' :
+                            'hour'}} of missing meter {{row.missingHourlyMeterReadings > 1? 'readings' : 'reading'}}.
+                        </p>
+                    </div>
+
                 </td>
             </tr>
         </tbody>
