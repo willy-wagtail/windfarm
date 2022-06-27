@@ -70,7 +70,7 @@ Angular uses strict TypeScript by default.
 
     - Also, if floating point precision matters, then calculations are a concern for the UI. Explore using BigInt, or libraries like bigdecimal js, or just doing it in backend.
 
-- Backend data, such as list of windfarms, and meter readings are not subject to change, and can be aggresively cached, either using a service with rxjs subjects, angular/pwa setup with service workers, or other means.
+- Backend data, such as list of windfarms, and meter readings are not subject to change, and can be aggresively cached, either using a service with rxjs subjects, angular/pwa setup with service workers, or other means. Ideally backend caching too.
 
 - Cypress e2e testing.
 
