@@ -39,7 +39,7 @@ Following the "Onion" architecture, I created layers of services with defined re
 
 - Last layer, we have the /services/ui layer, which adapts the app-wide services to exactly what the UI needs.
     - These are injected into the "smart" components - e.g. the CapacityFactorComponent. Generally I have one service per "smart" component, but depends.
-    - UI components are lazy loaded, so these are tree-shakeable with the providedIn method of declaring the service.
+    - UI components are lazy loaded, and services are tree-shakeable with the providedIn method of declaring the service.
 
 ### View
 
