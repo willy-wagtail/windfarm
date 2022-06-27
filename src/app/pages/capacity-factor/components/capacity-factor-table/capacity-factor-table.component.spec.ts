@@ -8,9 +8,9 @@ describe('CapacityFactorTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CapacityFactorTableComponent ]
+      declarations: [CapacityFactorTableComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CapacityFactorTableComponent);
     component = fixture.componentInstance;
@@ -19,5 +19,15 @@ describe('CapacityFactorTableComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('has correct headings', () => {
+    expect(component.headings).toEqual([
+      'Date',
+      'Electricity Produced',
+      'Total Capacity',
+      'Capacity Factor',
+      'Notes'
+    ]);
   });
 });
