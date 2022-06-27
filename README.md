@@ -2,6 +2,10 @@
 
 This is the Pexaparks technical test. The requirements are copied into REQUIREMENTS.md
 
+## Deployment
+
+App is deployed to Vercel from git. Visit it at https://windfarm.vercel.app/
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
@@ -75,6 +79,8 @@ Angular uses strict TypeScript by default.
 - Cypress e2e testing.
 
 - if extended table features are required, I have used AgGrid in the past which has extensive table features, even things like Pivot tables. It does have a large ramp-up and learning curve if new to it though.
+
+- in the smallest screen sizes, consider reducing number of columns in the table to only what is required.
 
 - Some missing tests - ran out of time! :)
 
